@@ -1,7 +1,6 @@
 <% if logged_in? %>
-  <%= render 'logged_in_home' %>
+  <%= render 'static_pages/home_logged_in' %>
 <% else %>
-  <%= render 'not_logged_in_home' %>
+  <%= render 'static_pages/home_not_logged_in' %>
 <% end %>
-<%#= image_tag('kitten.jpg') %>
 
