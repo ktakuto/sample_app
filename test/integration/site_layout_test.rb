@@ -7,7 +7,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     @other_user = users(:archer)
   end
 
-  test "layout links" do
+  test "layout links when logged in user" do
     get root_path
     assert_template 'static_pages/home'
     assert_select "a[href=?]", root_path, count: 2
@@ -24,5 +24,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select "title", full_title("Contact")
     get signup_path
     assert_select "title", full_title("Sign up")
+    assert_match @user.active_relationships.count.to_s, response.body
+    assert_match @user.passive_relationships.count.to_s, response.body
   end
 end
